@@ -1,0 +1,75 @@
+<!-- users/templates/users/profile_edit.html -->
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">RANK*UP</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'chat_list' %}">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile_edit' %}">Profile</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="container mt-5">
+  <h2 class="text-center">Edit Profile</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingGamingID" placeholder="Gaming ID" name="gaming_id" value="{{ form.gaming_id.value }}">
+          <label for="floatingGamingID">Gaming ID</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select class="form-select" id="floatingRank" name="rank">
+            {% for choice in form.rank.field.choices %}
+            <option value="{{ choice.0 }}" {% if form.rank.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+            {% endfor %}
+          </select>
+          <label for="floatingRank">Rank</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select class="form-select" id="floatingCountry" name="country">
+            {% for choice in form.country.field.choices %}
+            <option value="{{ choice.0 }}" {% if form.country.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+            {% endfor %}
+          </select>
+          <label for="floatingCountry">Country</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select class="form-select" id="floatingType" name="type">
+            {% for choice in form.type.field.choices %}
+            <option value="{{ choice.0 }}" {% if form.type.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+            {% endfor %}
+          </select>
+          <label for="floatingType">Type</label>
+        </div>
+        <div class="mb-3">
+          <label for="floatingThumbnail" class="form-label">Profile Thumbnail</label>
+          <input type="file" class="form-control" id="floatingThumbnail" name="thumbnail">
+          {% if form.thumbnail.value %}
+          <img src="{{ form.thumbnail.value.url }}" class="img-thumbnail mt-2" alt="Profile Thumbnail" width="100">
+          {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+      </form>
+    </div>
+  </div>
+</
