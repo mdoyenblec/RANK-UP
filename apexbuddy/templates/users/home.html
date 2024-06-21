@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">RANK*UP</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'chat_list' %}">Chats</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile_edit' %}">Profile</a>
+        </li>
+        <form class="d-flex" method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button class="btn btn-dark" type="submit">Logout</button>
+        </form>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="row justify-content-center mt-4">
+  <div class="col-md-6 text-center">
+    <br>
+    <h2>* Welcome, {{ user.profile.gaming_id }} ! *</h2>
+    <p>You : {{ user.profile.country }} ⎜ {{ user.profile.type }} ⎜ {{ user.profile.rank }}</p>
+    <br>
+    <p></p>
+    <div class="alert alert-primary d-flex align-items-center justify-content-center" role="alert">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-circle me-2" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+      </svg>&nbsp&nbsp&nbsp
+      <div>
+        All players in a <a href="#" class="alert-link">premade Ranked</a> squad have to be <a href="#" class="alert-link">within three ranks of each other</a>.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER --->
+<div class="container mt-5">
+  <form method="GET" class="row justify-content-center mb-4">
+      <div class="col-md-3">
+          <div class="btn-group">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {% if country_filter %}{{ country_filter }}{% else %}All Countries{% endif %}
+              </button>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" href="?{% if rank_filter %}rank={{ rank_filter }}&{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">All Countries</a>
+                  <a class="dropdown-item" href="?country=France{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">France</a>
+                  <a class="dropdown-item" href="?country=Belgium{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Belgium</a>
+                  <a class="dropdown-item" href="?country=UK{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">UK</a>
+                  <a class="dropdown-item" href="?country=Spain{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Spain</a>
+                  <a class="dropdown-item" href="?country=Germany{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Germany</a>
+                  <a class="dropdown-item" href="?country=Italy{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Italy</a>
+                  <a class="dropdown-item" href="?country=Greece{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Greece</a>
+              </div>
+          </div>
+      </div>
+      
+      <div class="col-md-3">
+          <div class="btn-group">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {% if rank_filter %}{{ rank_filter }}{% else %}All Ranks{% endif %}
+              </button>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" href="?{% if country_filter %}country={{ country_filter }}&{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">All Ranks</a>
+                  <a class="dropdown-item" href="?rank=Bronze{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Bronze</a>
+                  <a class="dropdown-item" href="?rank=Silver{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Silver</a>
+                  <a class="dropdown-item" href="?rank=Gold{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Gold</a>
+                  <a class="dropdown-item" href="?rank=Platinum{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Platinum</a>
+                  <a class="dropdown-item" href="?rank=Diamond{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Diamond</a>
+                  <a class="dropdown-item" href="?rank=Master{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Master</a>
+                  <a class="dropdown-item" href="?rank=Predator{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Predator</a>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-md-3">
+          <div class="btn-group">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {% if platform_filter %}{{ platform_filter }}{% else %}All Platforms{% endif %}
+              </button>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" href="?{% if country_filter %}country={{ country_filter }}&{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">All Platforms</a>
+                  <a class="dropdown-item" href="?platform=PS4/PS5{% if country_filter %}&country={{ country_filter }}{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">PS4/PS5</a>
+                  <a class="dropdown-item" href="?platform=XBOX{% if country_filter %}&country={{ country_filter }}{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">XBOX</a>
+                  <a class="dropdown-item" href="?platform=PC{% if country_filter %}&country={{ country_filter }}{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">PC</a>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-md-3">
+          <a href="{% url 'home' %}" class="btn btn-outline-primary">Reset Filters</a>
+      </div>
+  </form>
+</div>
+
+<head>
+  <!-- PLAYERS CARDS -->
+  {% if user.profile.type == 'XBOX' %}
+    <link rel="icon" type="image/svg+xml" href="{% static 'xbox.svg' %}">
+  {% elif user.profile.type == 'PS4/PS5' %}
+    <link rel="icon" type="image/svg+xml" href="{% static 'playstation.svg' %}">
+  {% endif %}
+</head>
+
+<div class="container mt-5">
+  <div class="row">
+    {% for profile in profiles %}
+    <div class="col-md-4">
+      <div class="card mb-4">
+        {% if profile.thumbnail %}
+        <img src="{{ profile.thumbnail.url }}" class="card-img-top" alt="Profile Thumbnail">
+        {% else %}
+        <img src="{% static 'default-thumbnail.jpg' %}" class="card-img-top" alt="Default Thumbnail">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+              <span>{{ profile.gaming_id }}</span>
+              {% if profile.type == 'XBOX' %}
+              <img src="{% static 'xbox.svg' %}" class="platform-logo ms-2" alt="Xbox Logo">
+              {% elif profile.type == 'PS4/PS5' %}
+              <img src="{% static 'playstation.svg' %}" class="platform-logo ms-2" alt="PlayStation Logo">
+              {% elif profile.type == 'PC' %}
+              <img src="{% static 'pcdisplay.svg' %}" class="platform-logo ms-2" alt="PC Logo">
+              {% endif %}
+            </div>
+            <div>
+              <!-- Online Status Badge -->
+              {% if profile.is_online %}
+                <span class="badge bg-success ms-2">Online</span>
+              {% elif profile.was_recently_online %}
+                <span class="badge bg-warning text-dark ms-2">Recently Online</span>
+              {% else %}
+                <span class="badge bg-secondary ms-2">Offline</span>
+              {% endif %}
+            </div>
+          </h5>
+          <p class="card-text">Country : {{ profile.country }}</p>
+          <p class="card-text">Rank : {{ profile.rank }}
+            {% if profile.rank == 'Predator' %}
+            <img src="{% static 'predator.png' %}" class="platform-logo ms-3" alt="Predator Logo">
+            {% elif profile.rank == 'Master' %}
+            <img src="{% static 'master.png' %}" class="platform-logo ms-3" alt="Master Logo">
+            {% elif profile.rank == 'Diamond' %}
+            <img src="{% static 'diamond.png' %}" class="platform-logo ms-3" alt="Diamond Logo">
+            {% elif profile.rank == 'Platinum' %}
+            <img src="{% static 'platinum.png' %}" class="platform-logo ms-3" alt="Platinum Logo">
+            {% elif profile.rank == 'Gold' %}
+            <img src="{% static 'gold.png' %}" class="platform-logo ms-3" alt="Gold Logo">
+            {% elif profile.rank == 'Silver' %}
+            <img src="{% static 'silver.png' %}" class="platform-logo ms-3" alt="Silver Logo">
+            {% elif profile.rank == 'Bronze' %}
+            <img src="{% static 'bronze.png' %}" class="platform-logo ms-3" alt="Bronze Logo">
+            {% endif %}
+          </p>
+          <a href="{% url 'chat_list' username=profile.user.email %}" class="btn btn-primary btn-block">Chat</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  .card:hover {
+    transform: translateY(-10px);
+  }
+  .platform-logo {
+    height: 24px; /* Adjust the height as needed */
+    vertical-align: middle;
+  }
+  .card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-title span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .ms-2 {
+    margin-left: 0.5rem;
+  }
+</style>
+{% endblock %}

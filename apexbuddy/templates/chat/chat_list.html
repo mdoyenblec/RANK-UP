@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %}Chats{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">RANK*UP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'chat_list' %}">Chats</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile_edit' %}">Profile</a>
+                </li>
+            </ul>
+            <form class="d-flex" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="btn btn-dark" type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <!-- Chat List -->
+        <div class="col-3" style="border-right: 1px solid #444; height: 100vh;">
+            <h2 class="sidebar-title text-center">Your Chats</h2>
+            <div class="list-group-horizontal d-flex overflow-auto p-3 mb-4 flex-column">
+                {% for contact in contacts %}
+                    {% if contact.profile.gaming_id %}
+                        <a href="{% url 'chat_list' username=contact.email %}" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between mb-2 {% if contact.email == active_chat %}active{% endif %}">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar me-2"></div>
+                                <span>{{ contact.profile.gaming_id }}</span>
+                            </div>
+                            <div>
+                                {% if contact.profile.is_online %}
+                                    <span class="badge bg-success">Online</span>
+                                {% elif contact.profile.was_recently_online %}
+                                    <span class="badge bg-warning text-dark">Recently Online</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">Offline</span>
+                                {% endif %}
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Chat Content -->
+        <div class="col-9 chat-content border shadow p-5" style="background-color: #ffffff; color: rgb(0, 0, 0);">
+            {% if current_contact %}
+                <div class="chat-header mb-4" style="background-color: transparent; color: black;">
+                    <h3>Chat with {{ current_contact.profile.gaming_id }} :</h3>
+                    <h7>⎜ {{ current_contact.profile.type }} ⎜ {{ current_contact.profile.rank }} ⎜ {{ current_contact.profile.country}} ⎜</h7>
+                </div>
+
+                <div class="message-container" style="flex: 1; overflow-y: auto; padding: 20px;">
+                    {% for message in messages %}
+                        <div class="d-flex {% if message.sender == request.user %}justify-content-end{% else %}justify-content-start{% endif %} mb-1">
+                            <div class="message {% if message.sender == request.user %}sent{% else %}received{% endif %}" style="padding: 10px 15px; margin-bottom: 2px; border-radius: 15px; max-width: 60%; word-wrap: break-word; display: flex; align-items: center;">
+                                <p style="color: rgb(0, 0, 0); margin: 0;"><strong>{{ message.sender.profile.gaming_id }} : </strong>{{ message.content }}</p> 
+                            </div>
+                        </div>
+                        <hr style="border: 0; border-top: 1px solid #444; margin: 1px 0;">
+                    {% endfor %}
+                </div>
+
+                <form method="post" class="chat-form mt-3" style="padding: 20px; background-color: #ffffff;">
+                    {% csrf_token %}
+                    <div class="input-group" style="display: flex;">
+                        <textarea class="form-control" id="id_content" name="content" placeholder="Write here..." style="border-radius: 20px 0 0 20px; border: none; padding: 10px 20px; background-color: #333333; color: #ffffff;"></textarea>
+                        <button type="submit" class="btn btn-primary" style="border-radius: 0 20px 20px 0; border: none; background-color: #007bff; border-color: #007bff;">Send</button>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+<style>
+.navbar-dark .navbar-brand, .navbar-dark .nav-link {
+    color: #ffffff;
+}
+
+.list-group-horizontal {
+    background-color: #1f1f1f;
+    border-radius: 10px;
+}
+
+.list-group-item {
+    background-color: #2a2a2a;
+    border: none;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.list-group-item:hover {
+    background-color: #333333;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.sent {
+    background-color: #007bff;
+    color: white;
+    text-align: right;
+    align-self: flex-end;
+}
+
+.received {
+    background-color: #444444;
+    color: white;
+    text-align: left;
+    align-self: flex-start;
+}
+</style>

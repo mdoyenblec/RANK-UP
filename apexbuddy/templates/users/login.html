@@ -1,0 +1,29 @@
+<!-- main/templates/main/login.html -->
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center">Login</h2>
+  <div class="row justify-content-center align-items-center" style="height: 30vh;">
+    <div class="col-md-6 col-lg-4">
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+      </form>
+      <div class="text-center mt-3">
+        <a href="{% url 'register' %}">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
