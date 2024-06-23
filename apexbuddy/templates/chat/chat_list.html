@@ -2,9 +2,21 @@
 {% block title %}Chats{% endblock %}
 
 {% block content %}
+
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        .h2-police {
+            font-family: 'Raleway', sans-serif;
+        }
+    </style>
+</head>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">RANK*UP</a>
+        <a class="navbar-brand mb-0 h1 h2-police" href="{% url 'home' %}">RANK*UP</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -89,6 +101,7 @@
 {% endblock %}
 
 <style>
+
 .navbar-dark .navbar-brand, .navbar-dark .nav-link {
     color: #ffffff;
 }

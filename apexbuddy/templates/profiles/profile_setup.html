@@ -12,6 +12,12 @@
 
 
 <style>
+  .h1-link {
+    font-size: 3rem; /* Taille de police similaire à h1 */
+    font-weight: bold; /* Poids de la police similaire à h1 */ /* Enlever la décoration de lien par défaut */
+    color: inherit; /* Hériter de la couleur actuelle */
+  }
+  
   .container-fluid {
     height: 100vh;
   }
@@ -116,7 +122,13 @@
     <div class="col-lg-6 left-side">
       <div class="overlay"></div> <!-- Ajout de la superposition -->
       <div class="left-side-content">
-        <h1><img src="esc3.png" alt="stairs logo" width="100" height="100"><strong> RANK*UP</strong><img src="esc3.png" alt="stairs logo" width="100" height="100"></h1>
+        <a href="{% url 'login' %}" class="btn btn-outline-light h1-link">
+          <img src="esc3.png" alt="stairs logo" width="100" height="100">
+          <strong> RANK*UP</strong>
+          <img src="esc3.png" alt="stairs logo" width="100" height="100">
+      </a>
+        <br>
+        <br>
         <p>Join The <strong>Ultimate Platform</strong> To Find <strong>Reliable Teammates</strong> And <strong>Climb</strong> The Apex Legends <strong>Ranked</strong> Ladder Together !<br><br>Connect With Players From Your Country 🇧🇷<br><br>Chat in Real-Time 👨🏻‍💻<br><br>And Build The Perfect Squad 🏆<br><br>To Dominate The Competition !</p>
         <br>
         <a href="{% url 'register' %}" class="btn btn-dark">JOIN US 👋🏼</a>
