@@ -4,8 +4,127 @@
 {% block title %}Profile Setup{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-  <div class="col-md-4">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+
+<style>
+  .container-fluid {
+    height: 100vh;
+  }
+
+  .left-side {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem; /* Padding autour du texte */
+    color: black;
+  }
+
+  .left-side::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/bmoon2.jpg'); /* Remplacez par le chemin de votre image */
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur de superposition noire semi-transparente */
+    z-index: 2;
+  }
+
+  .left-side-content {
+    position: relative;
+    z-index: 3;
+    color: white; /* Couleur du texte */
+  }
+
+  .left-side h1 {
+    font-size: 3.5rem; /* Taille de police plus grande pour le titre */
+    margin-bottom: 2rem;
+    font-family: "Raleway"; /* Marge en bas du titre */
+  }
+  
+  .right-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .right-side .container {
+    width: 100%;
+    max-width: 600px; /* Augmenter la largeur maximale du conteneur */
+  }
+
+  .form-label {
+    margin-bottom: 0.5rem; /* Réduire la marge en bas des labels */
+  }
+
+  .form-control {
+    height: calc(1.5em + 1rem + 2px); /* Augmenter la hauteur des champs de saisie */
+    padding: 1rem; /* Augmenter le padding des champs de saisie */
+    font-size: 1rem; /* Augmenter la taille de la police des champs de saisie */
+    width: 100%; /* Assurer que les champs de saisie prennent toute la largeur disponible */
+  }
+
+  .mb-3 {
+    margin-bottom: 1rem; /* Réduire la marge en bas des groupes de champs */
+  }
+
+  .container.mt-5 {
+    margin-top: 2rem; /* Réduire la marge en haut de la section de connexion */
+  }
+
+  .cta-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .cta-button:hover {
+    background-color: #0056b3;
+  }
+
+</style>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 left-side">
+      <div class="overlay"></div> <!-- Ajout de la superposition -->
+      <div class="left-side-content">
+        <h1><img src="esc3.png" alt="stairs logo" width="100" height="100"><strong> RANK*UP</strong><img src="esc3.png" alt="stairs logo" width="100" height="100"></h1>
+        <p>Join The <strong>Ultimate Platform</strong> To Find <strong>Reliable Teammates</strong> And <strong>Climb</strong> The Apex Legends <strong>Ranked</strong> Ladder Together !<br><br>Connect With Players From Your Country 🇧🇷<br><br>Chat in Real-Time 👨🏻‍💻<br><br>And Build The Perfect Squad 🏆<br><br>To Dominate The Competition !</p>
+        <br>
+        <a href="{% url 'register' %}" class="btn btn-dark">JOIN US 👋🏼</a>
+      </div>
+    </div>
+
+<div class="col-lg-6 right-side">
+  <div class="container mt-5">
     <h2 class="text-center">Profile Setup</h2>
     <form method="post">
       {% csrf_token %}
