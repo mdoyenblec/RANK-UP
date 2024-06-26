@@ -1,5 +1,5 @@
 # RANK*UP
-Apex Legends Mates Finder (with Django and Bootstrap)
+Apex Legends Ranked Mates Finder (with Django and Bootstrap)
 
 
 RANK*UP is the ultimate platform to find reliable teammates and climb the Apex Legends ranked ladder together. Connect with players from your country, chat in real-time, and build the perfect squad to dominate the competition!
