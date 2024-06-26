@@ -23,6 +23,8 @@ RANK*UP is the ultimate platform to find reliable teammates and climb the Apex L
 &nbsp;
 &nbsp;
 &nbsp;
+🖥️ Pics
+&nbsp;
 
 ![loginn](https://github.com/mdoyenblec/RANK-UP/assets/89549493/30001dcc-81bd-41ae-baf0-0c1beeb916f6)
 
