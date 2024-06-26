@@ -16,9 +16,13 @@ RANK*UP is the ultimate platform to find reliable teammates and climb the Apex L
 • Advanced Filters 🔍: Filter players by country, rank, and platform to find the perfect teammates.
 
 • User Profiles 👤: Create and customize your player profile, including rank, platform, and country.
+
 ![loginn](https://github.com/mdoyenblec/RANK-UP/assets/89549493/30001dcc-81bd-41ae-baf0-0c1beeb916f6)
+
 ![registerr](https://github.com/mdoyenblec/RANK-UP/assets/89549493/7b339cb1-f4a8-42a7-8c63-40c6bb4149ec)
+
 ![home](https://github.com/mdoyenblec/RANK-UP/assets/89549493/f3cd5a73-f093-4388-9c27-df230b69b65f)
+
 ![profileedit](https://github.com/mdoyenblec/RANK-UP/assets/89549493/6b655d6c-4c4c-4c09-aeaf-8eacfb74e93d)
 
 
@@ -43,6 +47,9 @@ RANK*UP est une plateforme ultime pour trouver des coéquipiers fiables et grimp
 • Profils Utilisateurs 👤 : Créez et personnalisez votre profil joueur, y compris votre rang, plateforme, et pays.
 
 ![loginn](https://github.com/mdoyenblec/RANK-UP/assets/89549493/30001dcc-81bd-41ae-baf0-0c1beeb916f6)
+
 ![registerr](https://github.com/mdoyenblec/RANK-UP/assets/89549493/7b339cb1-f4a8-42a7-8c63-40c6bb4149ec)
+
 ![home](https://github.com/mdoyenblec/RANK-UP/assets/89549493/f3cd5a73-f093-4388-9c27-df230b69b65f)
+
 ![profileedit](https://github.com/mdoyenblec/RANK-UP/assets/89549493/6b655d6c-4c4c-4c09-aeaf-8eacfb74e93d)
