@@ -23,3 +23,18 @@ RANK*UP is the ultimate platform to find reliable teammates and climb the Apex L
 
 
 ----------------------------------------------------------------------------------------------------------------------
+
+RANK*UP est une plateforme ultime pour trouver des coéquipiers fiables et grimper ensemble dans les classements de Apex Legends. Connectez-vous avec des joueurs de votre pays, discutez en temps réel, et formez l'équipe parfaite pour dominer la compétition !
+
+🚀 Fonctionnalités Principales
+
+• Communication en Temps Réel 💬 : Connectez-vous instantanément avec vos coéquipiers grâce à notre fonctionnalité de chat intégrée.
+
+• Matchs Personnalisés 🎮 : Trouvez des coéquipiers qui correspondent à votre rang et à votre style de jeu pour une meilleure synergie.
+
+• Communauté Mondiale 🌍 : Rejoignez une communauté mondiale de joueurs d'Apex Legends et faites-vous de nouveaux amis.
+
+• Filtres Avancés 🔍 : Filtrez les joueurs par pays, rang, et plateforme pour trouver les coéquipiers parfaits.
+
+• Profils Utilisateurs 👤 : Créez et personnalisez votre profil joueur, y compris votre rang, plateforme, et pays.
+
