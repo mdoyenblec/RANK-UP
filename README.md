@@ -1,11 +1,11 @@
 # RANK*UP
 Apex Legends Ranked Mates Finder (with Django and Bootstrap)
 
-<pre></pre>
+&nbsp;
 
 RANK*UP is the ultimate platform to find reliable teammates and climb the Apex Legends ranked ladder together. Connect with players from your country, chat in real-time, and build the perfect squad to dominate the competition!
 
-<pre></pre>
+&nbsp;
 
 🚀 Key Features
 
@@ -20,9 +20,9 @@ RANK*UP is the ultimate platform to find reliable teammates and climb the Apex L
 • User Profiles 👤: Create and customize your player profile, including rank, platform, and country.
 
 
-<pre></pre>
-<pre></pre>
-<pre></pre>
+&nbsp;
+&nbsp;
+&nbsp;
 
 ![loginn](https://github.com/mdoyenblec/RANK-UP/assets/89549493/30001dcc-81bd-41ae-baf0-0c1beeb916f6)
 
