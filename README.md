@@ -18,7 +18,7 @@ RANK*UP is the ultimate platform to find reliable teammates and climb the Apex L
 • User Profiles 👤: Create and customize your player profile, including rank, platform, and country.
 
 
-PICS :
+
 
 ![loginn](https://github.com/mdoyenblec/RANK-UP/assets/89549493/30001dcc-81bd-41ae-baf0-0c1beeb916f6)
 
@@ -52,7 +52,7 @@ RANK*UP est une plateforme ultime pour trouver des coéquipiers fiables et grimp
 • Profils Utilisateurs 👤 : Créez et personnalisez votre profil joueur, y compris votre rang, plateforme, et pays.
 
 
-PHOTOS :
+
 
 ![loginn](https://github.com/mdoyenblec/RANK-UP/assets/89549493/30001dcc-81bd-41ae-baf0-0c1beeb916f6)
 
