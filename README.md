@@ -33,6 +33,8 @@ RANK*UP is the ultimate platform to find reliable teammates and climb the Apex L
 
 ![home](https://github.com/mdoyenblec/RANK-UP/assets/89549493/f3cd5a73-f093-4388-9c27-df230b69b65f)
 
+![chat](https://github.com/mdoyenblec/RANK-UP/assets/89549493/0c2fc321-cbcc-460b-87b4-9c4973fd5f05)
+
 ![profileedit](https://github.com/mdoyenblec/RANK-UP/assets/89549493/6b655d6c-4c4c-4c09-aeaf-8eacfb74e93d)
 
 
@@ -74,5 +76,7 @@ RANK*UP est une plateforme ultime pour trouver des coéquipiers fiables et grimp
 ![choose](https://github.com/mdoyenblec/RANK-UP/assets/89549493/55285a68-77be-4c1b-b3fa-d69b40ecea2f)
 
 ![home](https://github.com/mdoyenblec/RANK-UP/assets/89549493/f3cd5a73-f093-4388-9c27-df230b69b65f)
+
+![chat](https://github.com/mdoyenblec/RANK-UP/assets/89549493/d43198d2-416b-4364-9113-424fca7c0d9d)
 
 ![profileedit](https://github.com/mdoyenblec/RANK-UP/assets/89549493/6b655d6c-4c4c-4c09-aeaf-8eacfb74e93d)
