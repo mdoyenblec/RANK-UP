@@ -5,13 +5,61 @@
 
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <style>
-        .h2-police {
-            font-family: 'Raleway', sans-serif;
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<style>
+    .h2-police {
+        font-family: 'Raleway', sans-serif;
+    }
+    .badge-light {
+        margin-left: 5px;
+    }
+    .message-bubble {
+        border-radius: 20px;
+        padding: 15px;
+        margin-bottom: 10px;
+        max-width: 60%;
+        word-wrap: break-word;
+    }
+    .sent {
+        background-color: #007bff;
+        color: white;
+        align-self: flex-end;
+    }
+    .received {
+        background-color: #444444;
+        color: white;
+        align-self: flex-start;
+    }
+    .message-container {
+        display: flex;
+        flex-direction: column;
+        height: 70vh;
+        overflow-y: auto;
+    }
+    .chat-form {
+        position: fixed;
+        bottom: 0;
+        width: 75%;
+        background-color: #f8f9fa;
+        padding: 10px;
+    }
+    .nav-item .nav-link {
+        display: flex;
+        align-items: center;
+    }
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const textarea = document.getElementById("id_content");
+    textarea.addEventListener("keypress", function(event) {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault(); // Empêcher l'ajout d'une nouvelle ligne
+            document.querySelector(".chat-form").submit(); // Soumettre le formulaire
         }
-    </style>
+    });
+});
+</script>
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -26,7 +74,11 @@
                     <a class="nav-link" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'chat_list' %}">Chats</a>
+                    <a class="nav-link" href="{% url 'chat_list' %}">Chats
+                        {% if unread_messages_count > 0 %}
+                            <span class="badge badge-light">{{ unread_messages_count }}</span>
+                        {% endif %}
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'profile_edit' %}">Profile</a>
@@ -52,6 +104,11 @@
                             <div class="d-flex align-items-center">
                                 <div class="avatar me-2"></div>
                                 <span>{{ contact.profile.gaming_id }}</span>
+                                &nbsp;
+                                &nbsp;
+                                {% if contact.unread_count > 0 %}
+                                    <span class="badge badge-danger">{{ contact.unread_count }}</span>
+                                {% endif %}
                             </div>
                             <div>
                                 {% if contact.profile.is_online %}
@@ -68,31 +125,34 @@
             </div>
         </div>
         <!-- Chat Content -->
-        <div class="col-9 chat-content border shadow p-5" style="background-color: #ffffff; color: rgb(0, 0, 0);">
+        <div class="col-9 p-0 d-flex flex-column">
             {% if current_contact %}
-                <div class="chat-header mb-4" style="background-color: transparent; color: black;">
+                <div class="chat-header p-3 mb-4" style="background-color: transparent; color: black;">
                     <h3>Chat with {{ current_contact.profile.gaming_id }} :</h3>
                     <h7>⎜ {{ current_contact.profile.type }} ⎜ {{ current_contact.profile.rank }} ⎜ {{ current_contact.profile.country}} ⎜</h7>
                 </div>
 
-                <div class="message-container" style="flex: 1; overflow-y: auto; padding: 20px;">
+                <div class="message-container p-3">
                     {% for message in messages %}
-                        <div class="d-flex {% if message.sender == request.user %}justify-content-end{% else %}justify-content-start{% endif %} mb-1">
-                            <div class="message {% if message.sender == request.user %}sent{% else %}received{% endif %}" style="padding: 10px 15px; margin-bottom: 2px; border-radius: 15px; max-width: 60%; word-wrap: break-word; display: flex; align-items: center;">
-                                <p style="color: rgb(0, 0, 0); margin: 0;"><strong>{{ message.sender.profile.gaming_id }} : </strong>{{ message.content }}</p> 
+                        <div class="d-flex {% if message.sender == request.user %}justify-content-end{% else %}justify-content-start{% endif %}">
+                            <div class="message-bubble {% if message.sender == request.user %}sent{% else %}received{% endif %}">
+                                <p class="m-0">{{ message.content }}</p> 
                             </div>
                         </div>
-                        <hr style="border: 0; border-top: 1px solid #444; margin: 1px 0;">
                     {% endfor %}
                 </div>
 
-                <form method="post" class="chat-form mt-3" style="padding: 20px; background-color: #ffffff;">
+                <form method="post" class="chat-form">
                     {% csrf_token %}
-                    <div class="input-group" style="display: flex;">
+                    <div class="input-group">
                         <textarea class="form-control" id="id_content" name="content" placeholder="Write here..." style="border-radius: 20px 0 0 20px; border: none; padding: 10px 20px; background-color: #333333; color: #ffffff;"></textarea>
-                        <button type="submit" class="btn btn-primary" style="border-radius: 0 20px 20px 0; border: none; background-color: #007bff; border-color: #007bff;">Send</button>
+                        <button type="submit" class="btn btn-outline-light" style="border-radius: 0 20px 20px 0; border: none; background-color: #007bff;">Send</button>
                     </div>
                 </form>
+            {% else %}
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <p>Please select a chat to start messaging.</p>
+                </div>
             {% endif %}
         </div>
     </div>
@@ -101,7 +161,6 @@
 {% endblock %}
 
 <style>
-
 .navbar-dark .navbar-brand, .navbar-dark .nav-link {
     color: #ffffff;
 }
@@ -129,17 +188,4 @@
     border-radius: 50%;
 }
 
-.sent {
-    background-color: #007bff;
-    color: white;
-    text-align: right;
-    align-self: flex-end;
-}
-
-.received {
-    background-color: #444444;
-    color: white;
-    text-align: left;
-    align-self: flex-start;
-}
 </style>

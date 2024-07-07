@@ -13,6 +13,13 @@
           .h2-police {
               font-family: 'Raleway', sans-serif;
           }
+          .badge-light {
+            margin-left: 5px;
+          }
+          .nav-item .nav-link {
+            display: flex;
+            align-items: center;
+          }
       </style>
   </head>
 
@@ -28,8 +35,12 @@
           <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'chat_list' %}">Chats</a>
-        </li>
+          <a class="nav-link" href="{% url 'chat_list' %}">Chats
+              {% if unread_messages_count > 0 %}
+                  <span class="badge badge-light">{{ unread_messages_count }}</span>
+              {% endif %}
+          </a>
+      </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'profile_edit' %}">Profile</a>
         </li>
