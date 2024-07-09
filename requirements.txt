@@ -1,3 +1,11 @@
 asgiref==3.8.1
+certifi==2024.2.2
+charset-normalizer==3.3.2
+defusedxml==0.7.1
 Django==5.0.6
+django-bootstrap-icons==0.8.7
+idna==3.7
+pillow==10.3.0
+requests==2.32.3
 sqlparse==0.5.0
+urllib3==2.2.1
