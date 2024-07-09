@@ -1,15 +1,14 @@
-<!-- templates/profiles/profile_setup.html -->
 {% extends "base.html" %}
 
 {% block title %}Profile Setup{% endblock %}
 
 {% block content %}
 <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-
 
 <style>
   .h1-link {
@@ -90,6 +89,20 @@
     width: 100%; /* Assurer que les champs de saisie prennent toute la largeur disponible */
   }
 
+  .form-select {
+    height: calc(1.5em + 1rem + 2px); /* Augmenter la hauteur des sélecteurs */
+    padding: 1rem; /* Augmenter le padding des sélecteurs */
+    font-size: 1rem; /* Augmenter la taille de la police des sélecteurs */
+    background-color: #fff; /* Couleur de fond des sélecteurs */
+    color: #000; /* Couleur du texte des sélecteurs */
+  }
+
+  .form-select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
   .mb-3 {
     margin-bottom: 1rem; /* Réduire la marge en bas des groupes de champs */
   }
@@ -126,7 +139,7 @@
           <img src="esc3.png" alt="stairs logo" width="100" height="100">
           <strong> RANK*UP</strong>
           <img src="esc3.png" alt="stairs logo" width="100" height="100">
-      </a>
+        </a>
         <br>
         <br>
         <p>Join The <strong>Ultimate Platform</strong> To Find <strong>Reliable Teammates</strong> And <strong>Climb</strong> The Apex Legends <strong>Ranked</strong> Ladder Together !<br><br>Connect With Players From Your Country 🇧🇷<br><br>Chat in Real-Time 👨🏻‍💻<br><br>And Build The Perfect Squad 🏆<br><br>To Dominate The Competition !</p>
@@ -135,14 +148,16 @@
       </div>
     </div>
 
-<div class="col-lg-6 right-side">
-  <div class="container mt-5">
-    <h2 class="text-center">Profile Setup</h2>
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-primary btn-block">Save Profile</button>
-    </form>
+    <div class="col-lg-6 right-side">
+      <div class="container mt-5">
+        <h2 class="text-center">Profile Setup</h2>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary btn-block">Save Profile</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

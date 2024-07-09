@@ -1,12 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
+from django.conf import settings
 from .forms import RegisterForm, LoginForm
 from profiles.forms import ProfileForm
 from profiles.models import Profile
-import logging
 from django.utils import timezone
 from datetime import timedelta
+import logging
+import requests
+import time
+
+
 
 logger = logging.getLogger(__name__)
 
@@ -65,11 +71,14 @@ def home_view(request):
     print(f"Profiles count: {profiles.count()}")
     for profile in profiles:
         logger.debug(f"Profile {profile.gaming_id} - User Email: {profile.user.email}")
+        apex_data = get_apex_data(profile.gaming_id, profile.type)
+        if apex_data:
+            profile.apex_data = apex_data
 
     context = {
         'user_email': user.email,
-        'user_rank': user.profile.rank,  # Supposons que 'rank' est un champ dans le modèle Profile
-        'user_country': user.profile.country,  # Supposons que 'country' est un champ dans le modèle Profile
+        'user_rank': user.profile.rank,  
+        'user_country': user.profile.country,  
         'user_type': user.profile.type,
         'profiles': profiles,
         'country_filter': country_filter,
@@ -107,3 +116,43 @@ def profile_edit(request):
         form = ProfileForm(instance=request.user.profile)
     
     return render(request, 'profiles/profile_edit.html', {'form': form})
+
+
+
+
+
+## API Apex Legends Status ##
+
+
+def map_platform(type):
+    platform_mapping = {
+        'PS4': 'PS4',
+        'XBOX': 'X1',
+        'PC': 'PC'
+    }
+    return platform_mapping.get(type, type)
+
+
+def get_apex_data(gaming_id, type):
+    mapped_platform = map_platform(type)
+    cache_key = f"apex_data_{gaming_id}_{mapped_platform}"
+    apex_data = cache.get(cache_key)
+    if apex_data is None:
+        url = f"https://api.mozambiquehe.re/bridge?auth={settings.APEX_API_KEY}&player={gaming_id}&platform={mapped_platform}"
+        response = requests.get(url)
+        logger.debug(f"Requesting URL: {url}")
+        if response.status_code == 200:
+            data = response.json()
+            if 'global' in data and 'rank' in data['global']:
+                apex_data = data['global']['rank']
+                logger.debug(f"API Response: {apex_data}")
+                cache.set(cache_key, apex_data, timeout=3600)  # Cache for 1 hour
+            else:
+                apex_data = None
+        else:
+            logger.error(f"Failed to get data from API. Status code: {response.status_code}, Response: {response.text}")
+            apex_data = None
+        # Wait 0.5 seconds between requests to not exceed 2 requests per second
+        time.sleep(0.5)
+    return apex_data
+

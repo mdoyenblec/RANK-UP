@@ -16,8 +16,8 @@ class Profile(models.Model):
     ]
 
     type_choices = [
-        ('PS4/PS5', 'PS4/PS5'),
-        ('XBOX', 'XBOX'),
+        ('PS4', 'PS4'),
+        ('X1', 'XBOX'),
         ('PC', 'PC'),
     ]
 

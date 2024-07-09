@@ -12,12 +12,35 @@
 </head>
 
 <style>
+  body {
+    background-color: #121212; /* Dark background color */
+    color: #e0e0e0; /* Light text color */
+  }
   .badge-light {
-        margin-left: 5px;
-    }
+    margin-left: 5px;
+  }
   .nav-item .nav-link {
     display: flex;
     align-items: center;
+  }
+  .card {
+    background-color: #4f4f4f; /* Dark grey card background */
+    color: #e0e0e0; /* Light text color */
+  }
+  .dropdown-menu {
+    background-color: #ffffff; /* Dark grey dropdown background */
+    color: #00000077; /* Light text color */
+  }
+  .dropdown-item:hover {
+    background-color: #e5e5e5; /* Slightly lighter grey for hover effect */
+  }
+  .btn-outline-secondary, .btn-outline-primary {
+    color: #e0e0e0; /* Light text color for buttons */
+    border-color: #e0e0e0; /* Light border color for buttons */
+  }
+  .btn-outline-secondary:hover, .btn-outline-primary:hover {
+    background-color: #3d3d3d; /* Slightly lighter grey for hover effect */
+    border-color: #e0e0e0; /* Light border color for buttons */
   }
 </style>
 
@@ -55,8 +78,7 @@
   <div class="col-md-6 text-center">
     <br>
     <h2><img src="esc3.png" alt="stairs logo" width="100" height="100">Welcome to RANK*UP, <strong>{{ user.profile.gaming_id }}</strong> !<img src="esc3.png" alt="stairs logo" width="100" height="100"></h2>
-    <p>Connect With Players From Around The World, Chat In Real-Time, And Build The Perfect Squad To Dominate The Competition ! Join Us Today And Start Your Journey To The Top With RANK*UP.</p>
-    <p>🥷🏻You : {{ user.profile.country }} ⎜ {{ user.profile.type }} ⎜ {{ user.profile.rank }}</p>
+    <p>Connect With Players From Around The World, Chat in Real-Time, and Build The Perfect Squad to Dominate The Competition !</p>
     <br>
     <p></p>
     <div class="alert alert-success d-flex align-items-center justify-content-center" role="alert">
@@ -155,7 +177,7 @@
               <span>{{ profile.gaming_id }}</span>
               {% if profile.type == 'XBOX' %}
               <img src="{% static 'xbox.svg' %}" class="platform-logo ms-2" alt="Xbox Logo">
-              {% elif profile.type == 'PS4/PS5' %}
+              {% elif profile.type == 'PS4' %}
               <img src="{% static 'playstation.svg' %}" class="platform-logo ms-2" alt="PlayStation Logo">
               {% elif profile.type == 'PC' %}
               <img src="{% static 'pcdisplay.svg' %}" class="platform-logo ms-2" alt="PC Logo">
@@ -190,6 +212,10 @@
             <img src="{% static 'bronze.png' %}" class="platform-logo ms-3" alt="Bronze Logo">
             {% endif %}
           </p>
+          {% if profile.apex_data %}
+          <p class="card-text">Apex Rank : {{ profile.apex_data.rankName }} {{ profile.apex_data.rankDiv }}</p>
+          <p class="card-text">Apex Rank Score : {{ profile.apex_data.rankScore }}</p>
+          {% endif %}
           <a href="{% url 'chat_list' username=profile.user.email %}" class="btn btn-primary btn-block">Chat</a>
         </div>
       </div>
@@ -199,7 +225,6 @@
 </div>
 
 <style>
-
   .h2-police {
     font-family: "Raleway";
   }
