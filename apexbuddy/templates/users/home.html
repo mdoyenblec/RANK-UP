@@ -171,7 +171,7 @@
         {% else %}
         <img src="{% static 'default-thumbnail.jpg' %}" class="card-img-top" alt="Default Thumbnail">
         {% endif %}
-        <div class="card-body">
+        <div class="card-body text-center">
           <h5 class="card-title d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
               <span>{{ profile.gaming_id }}</span>
@@ -184,7 +184,6 @@
               {% endif %}
             </div>
             <div>
-              <!-- Online Status Badge -->
               {% if profile.is_online %}
                 <span class="badge bg-success ms-2">Online</span>
               {% elif profile.was_recently_online %}
@@ -194,29 +193,28 @@
               {% endif %}
             </div>
           </h5>
-          <p class="card-text">Country : {{ profile.country }}</p>
-          <p class="card-text">Rank : {{ profile.rank }}
-            {% if profile.rank == 'Predator' %}
-            <img src="{% static 'predator.png' %}" class="platform-logo ms-3" alt="Predator Logo">
-            {% elif profile.rank == 'Master' %}
-            <img src="{% static 'master.png' %}" class="platform-logo ms-3" alt="Master Logo">
-            {% elif profile.rank == 'Diamond' %}
-            <img src="{% static 'diamond.png' %}" class="platform-logo ms-3" alt="Diamond Logo">
-            {% elif profile.rank == 'Platinum' %}
-            <img src="{% static 'platinum.png' %}" class="platform-logo ms-3" alt="Platinum Logo">
-            {% elif profile.rank == 'Gold' %}
-            <img src="{% static 'gold.png' %}" class="platform-logo ms-3" alt="Gold Logo">
-            {% elif profile.rank == 'Silver' %}
-            <img src="{% static 'silver.png' %}" class="platform-logo ms-3" alt="Silver Logo">
-            {% elif profile.rank == 'Bronze' %}
-            <img src="{% static 'bronze.png' %}" class="platform-logo ms-3" alt="Bronze Logo">
-            {% endif %}
-          </p>
+          <p class="card-text">Country: {{ profile.country }}</p>
           {% if profile.apex_data %}
-          <p class="card-text">Apex Rank : {{ profile.apex_data.rankName }} {{ profile.apex_data.rankDiv }}</p>
-          <p class="card-text">Apex Rank Score : {{ profile.apex_data.rankScore }}</p>
+          <p class="card-text">{{ profile.apex_data.rankName }} ({{ profile.apex_data.rankScore }})</p>
+          <div>
+            {% if profile.apex_data.rankName == 'Apex Predator' %}
+            <img src="{% static 'predator.png' %}" class="badge-logo mt-2" alt="Predator Logo">
+            {% elif profile.apex_data.rankName == 'Master' %}
+            <img src="{% static 'master.png' %}" class="badge-logo mt-2" alt="Master Logo">
+            {% elif profile.apex_data.rankName == 'Diamond' %}
+            <img src="{% static 'diamond.png' %}" class="badge-logo mt-2" alt="Diamond Logo">
+            {% elif profile.apex_data.rankName == 'Platinum' %}
+            <img src="{% static 'platinum.png' %}" class="badge-logo mt-2" alt="Platinum Logo">
+            {% elif profile.apex_data.rankName == 'Gold' %}
+            <img src="{% static 'gold.png' %}" class="badge-logo mt-2" alt="Gold Logo">
+            {% elif profile.apex_data.rankName == 'Silver' %}
+            <img src="{% static 'silver.png' %}" class="badge-logo mt-2" alt="Silver Logo">
+            {% elif profile.apex_data.rankName == 'Bronze' %}
+            <img src="{% static 'bronze.png' %}" class="badge-logo mt-2" alt="Bronze Logo">
+            {% endif %}
+          </div>
           {% endif %}
-          <a href="{% url 'chat_list' username=profile.user.email %}" class="btn btn-primary btn-block">Chat</a>
+          <a href="{% url 'chat_list' username=profile.user.email %}" class="btn btn-primary btn-block mt-3">Chat</a>
         </div>
       </div>
     </div>
@@ -232,6 +230,8 @@
   .card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
+    background-color: #4f4f4f; /* Dark grey card background */
+    color: #e0e0e0; /* Light text color */
   }
   .card:hover {
     transform: translateY(-10px);
@@ -239,6 +239,11 @@
   .platform-logo {
     height: 24px; /* Adjust the height as needed */
     vertical-align: middle;
+  }
+  .badge-logo {
+    width: 50px; /* Set width as needed */
+    height: 50px; /* Set height as needed */
+    margin-top: 10px; /* Adjust margin as needed */
   }
   .card-title {
     display: flex;
@@ -252,5 +257,20 @@
   .ms-2 {
     margin-left: 0.5rem;
   }
+  .card-text {
+    margin-bottom: 0.5rem; /* Adjust margin as needed */
+  }
+  .mt-2 {
+    margin-top: 0.5rem; /* Adjust margin as needed */
+  }
+  .mt-3 {
+    margin-top: 1rem; /* Adjust margin as needed */
+  }
+  .text-center {
+    text-align: center;
+  }
 </style>
+
+
+
 {% endblock %}
