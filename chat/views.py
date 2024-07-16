@@ -1,11 +1,12 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q, Count
+from django.db.models import Q
 from chat.models import Message
 from chat.forms import MessageForm
 from datetime import timedelta
 from django.utils import timezone
+from users.views import get_apex_data  # Importer la fonction depuis users.views
 
 User = get_user_model()
 
@@ -20,6 +21,7 @@ def chat_list_view(request, username=None):
 
     current_contact = None
     messages = []
+    apex_data = None  # Variable pour stocker les données de l'API
 
     # If no username is provided, default to the first contact
     if not username and contacts.exists():
@@ -36,6 +38,9 @@ def chat_list_view(request, username=None):
         
         # Marquer les messages comme lus lorsque l'utilisateur ouvre le chat
         messages.filter(receiver=user, is_read=False).update(is_read=True)
+
+        # Récupérer les données de l'API pour le contact actuel
+        apex_data = get_apex_data(current_contact.profile.gaming_id, current_contact.profile.platform)
 
     if request.method == 'POST':
         form = MessageForm(request.POST)
@@ -65,5 +70,6 @@ def chat_list_view(request, username=None):
         'form': form,
         'active_chat': username,  # Ajouter l'email du contact actuel au contexte
         'unread_messages_count': unread_messages_count,  # Ajouter le nombre de messages non lus au contexte
+        'apex_data': apex_data,  # Ajouter les données de l'API au contexte
     }
     return render(request, 'chat/chat_list.html', context)

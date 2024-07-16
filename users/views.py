@@ -60,26 +60,27 @@ def home_view(request):
     for profile in profiles:
         profile.is_online = profile.last_active and timezone.now() - profile.last_active < timedelta(minutes=5)
         profile.was_recently_online = profile.last_active and timezone.now() - profile.last_active < timedelta(hours=72)
+        apex_data = get_apex_data(profile.gaming_id, profile.platform)
+        profile.apex_data = apex_data
     
     if country_filter:
         profiles = profiles.filter(country=country_filter)
     if rank_filter:
-        profiles = profiles.filter(rank=rank_filter)
+        profiles = [profile for profile in profiles if profile.apex_data and profile.apex_data.get('rankName') == rank_filter]
     if platform_filter:
-        profiles = profiles.filter(type=platform_filter)
+        profiles = profiles.filter(platform=platform_filter)
 
-    print(f"Profiles count: {profiles.count()}")
+    print(f"Profiles count: {len(profiles)}")
     for profile in profiles:
         logger.debug(f"Profile {profile.gaming_id} - User Email: {profile.user.email}")
-        apex_data = get_apex_data(profile.gaming_id, profile.type)
+        apex_data = get_apex_data(profile.gaming_id, profile.platform)
         if apex_data:
             profile.apex_data = apex_data
 
     context = {
         'user_email': user.email,
-        'user_rank': user.profile.rank,  
         'user_country': user.profile.country,  
-        'user_type': user.profile.type,
+        'user_platform': user.profile.platform,
         'profiles': profiles,
         'country_filter': country_filter,
         'rank_filter': rank_filter,
@@ -124,17 +125,17 @@ def profile_edit(request):
 ## API Apex Legends Status ##
 
 
-def map_platform(type):
+def map_platform(platform):
     platform_mapping = {
         'PS4': 'PS4',
         'XBOX': 'X1',
         'PC': 'PC'
     }
-    return platform_mapping.get(type, type)
+    return platform_mapping.get(platform, platform)
 
 
-def get_apex_data(gaming_id, type):
-    mapped_platform = map_platform(type)
+def get_apex_data(gaming_id, platform):
+    mapped_platform = map_platform(platform)
     cache_key = f"apex_data_{gaming_id}_{mapped_platform}"
     apex_data = cache.get(cache_key)
     if apex_data is None:

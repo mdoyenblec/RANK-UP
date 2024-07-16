@@ -5,17 +5,8 @@ from datetime import datetime, timedelta
 
 # Create your models here.
 class Profile(models.Model):
-    rank_choices = [
-        ('Bronze', 'Bronze'),
-        ('Silver', 'Silver'),
-        ('Gold', 'Gold'),
-        ('Platinum', 'Platinum'),
-        ('Diamond', 'Diamond'),
-        ('Master', 'Master'),
-        ('Predator', 'Predator'),
-    ]
 
-    type_choices = [
+    platform_choices = [
         ('PS4', 'PS4'),
         ('X1', 'XBOX'),
         ('PC', 'PC'),
@@ -35,8 +26,7 @@ class Profile(models.Model):
     
 
     country = models.CharField(max_length=100, choices=country_choices)
-    type = models.CharField(max_length=100, choices=type_choices)
-    rank = models.CharField(max_length=100, choices=rank_choices)
+    platform = models.CharField(max_length=100, choices=platform_choices)
     gaming_id = models.CharField(max_length=100, null=True, blank=True)
     thumbnail = models.ImageField(upload_to='thumbnails/', default='default-thumbnail.jpg')
     last_active = models.DateTimeField(null=True, blank=True)

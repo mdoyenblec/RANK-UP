@@ -67,25 +67,9 @@
             {{ form.gaming_id.errors }}
           </div>
         </div>
+        
         <div class="mb-3 row">
-          <label for="rank" class="col-sm-4 col-form-label"><strong>Rank:</strong></label>
-          <div class="col-sm-8">
-            <div class="btn-group w-100">
-              <button class="btn btn-outline-dark dropdown-toggle w-100 text-start" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {% if form.rank.value %}{{ form.rank.value }}{% else %}Select Rank{% endif %}
-              </button>
-              <div class="dropdown-menu w-100">
-                {% for choice in form.rank.field.choices %}
-                  <a class="dropdown-item" href="#" onclick="document.getElementById('rank').value='{{ choice.0 }}'; this.parentElement.parentElement.querySelector('.dropdown-toggle').textContent='{{ choice.1 }}'; return false;">{{ choice.1 }}</a>
-                {% endfor %}
-              </div>
-              <input type="hidden" id="rank" name="rank" value="{{ form.rank.value }}">
-              {{ form.rank.errors }}
-            </div>
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="country" class="col-sm-4 col-form-label"><strong>Country:</strong></label>
+          <label for="country" class="col-sm-4 col-form-label"><strong>Country :</strong></label>
           <div class="col-sm-8">
             <div class="btn-group w-100">
               <button class="btn btn-outline-dark dropdown-toggle w-100 text-start" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -102,25 +86,25 @@
           </div>
         </div>
         <div class="mb-3 row">
-          <label for="type" class="col-sm-4 col-form-label"><strong>Type:</strong></label>
+          <label for="type" class="col-sm-4 col-form-label"><strong>Platform :</strong></label>
           <div class="col-sm-8">
             <div class="btn-group w-100">
               <button class="btn btn-outline-dark dropdown-toggle w-100 text-start" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {% if form.type.value %}{{ form.type.value }}{% else %}Select Type{% endif %}
+                  {% if form.platform.value %}{{ form.platform.value }}{% else %}Select Platform{% endif %}
               </button>
               <div class="dropdown-menu w-100">
-                {% for choice in form.type.field.choices %}
+                {% for choice in form.platform.field.choices %}
                   <a class="dropdown-item" href="#" onclick="document.getElementById('type').value='{{ choice.0 }}'; this.parentElement.parentElement.querySelector('.dropdown-toggle').textContent='{{ choice.1 }}'; return false;">{{ choice.1 }}</a>
                 {% endfor %}
               </div>
               <input type="hidden" id="type" name="type" value="{{ form.type.value }}">
-              {{ form.type.errors }}
+              {{ form.platform.errors }}
             </div>
           </div>
         </div>
         <br></br>
         <div class="mb-3 row">
-          <label for="thumbnail" class="col-sm-4 col-form-label"><strong>Profile Thumbnail:</strong></label>
+          <label for="thumbnail" class="col-sm-4 col-form-label"><strong>Profile Thumbnail :</strong></label>
           <div class="col-sm-8">
             <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*">
             {{ form.thumbnail.errors }}

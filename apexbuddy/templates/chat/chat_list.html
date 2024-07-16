@@ -129,7 +129,14 @@ document.addEventListener("DOMContentLoaded", function() {
             {% if current_contact %}
                 <div class="chat-header p-3 mb-4" style="background-color: transparent; color: black;">
                     <h3>Chat with {{ current_contact.profile.gaming_id }} :</h3>
-                    <h7>⎜ {{ current_contact.profile.type }} ⎜ {{ current_contact.profile.rank }} ⎜ {{ current_contact.profile.country}} ⎜</h7>
+                    <h7>⎜ {{ current_contact.profile.platform }} ⎜ 
+                        {% if apex_data %}
+                          {{ apex_data.rankName }} ({{ apex_data.rankDiv }}) 
+                        {% else %}
+                          No Rank Data
+                        {% endif %}
+                        ⎜ {{ current_contact.profile.country }} ⎜
+                      </h7>
                 </div>
 
                 <div class="message-container p-3">
