@@ -4,7 +4,7 @@ from .models import Profile
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['country', 'platform', 'gaming_id', 'thumbnail']
+        fields = ['country', 'platform', 'gaming_id', 'thumbnail', 'your_bio']
         widgets = {
             'country': forms.Select(choices=[
                 ('France', 'France'),
@@ -22,4 +22,5 @@ class ProfileForm(forms.ModelForm):
             ], attrs={'class': 'form-select'}),
             'gaming_id': forms.TextInput(attrs={'class': 'form-control'}),
             'thumbnail': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'your_bio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Looking for ...'}),
         }
