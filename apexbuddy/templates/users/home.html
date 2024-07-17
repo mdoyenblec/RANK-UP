@@ -96,68 +96,67 @@
 <!-- FILTER --->
 <div class="container mt-5">
   <form method="GET" class="row justify-content-center mb-4">
-    <div class="col-md-3 mb-2">
-      <div class="btn-group">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {% if country_filter %}{{ country_filter }}{% else %}All Countries{% endif %}
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="?{% if rank_filter %}rank={{ rank_filter }}&{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">All Countries</a>
-          <a class="dropdown-item" href="?country=France{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">France</a>
-          <a class="dropdown-item" href="?country=Belgium{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Belgium</a>
-          <a class="dropdown-item" href="?country=UK{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">UK</a>
-          <a class="dropdown-item" href="?country=Spain{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Spain</a>
-          <a class="dropdown-item" href="?country=Germany{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Germany</a>
-          <a class="dropdown-item" href="?country=Italy{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Italy</a>
-          <a class="dropdown-item" href="?country=Greece{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Greece</a>
-        </div>
+      <div class="col-md-3 mb-2">
+          <div class="btn-group w-100">
+              <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {% if country_filter %}{{ country_filter }}{% else %}All Countries{% endif %}
+              </button>
+              <div class="dropdown-menu w-100">
+                  <a class="dropdown-item" href="?{% if rank_filter %}rank={{ rank_filter }}&{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">All Countries</a>
+                  <a class="dropdown-item" href="?country=France{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">France</a>
+                  <a class="dropdown-item" href="?country=Belgium{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Belgium</a>
+                  <a class="dropdown-item" href="?country=UK{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">UK</a>
+                  <a class="dropdown-item" href="?country=Spain{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Spain</a>
+                  <a class="dropdown-item" href="?country=Germany{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Germany</a>
+                  <a class="dropdown-item" href="?country=Italy{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Italy</a>
+                  <a class="dropdown-item" href="?country=Greece{% if rank_filter %}&rank={{ rank_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Greece</a>
+              </div>
+          </div>
       </div>
-    </div>
-    
-    <div class="col-md-3 mb-2">
-      <div class="btn-group">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {% if rank_filter %}{{ rank_filter }}{% else %}All Ranks{% endif %}
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="?{% if country_filter %}country={{ country_filter }}&{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">All Ranks</a>
-          <a class="dropdown-item" href="?rank=Bronze{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Bronze</a>
-          <a class="dropdown-item" href="?rank=Silver{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Silver</a>
-          <a class="dropdown-item" href="?rank=Gold{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Gold</a>
-          <a class="dropdown-item" href="?rank=Platinum{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Platinum</a>
-          <a class="dropdown-item" href="?rank=Diamond{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Diamond</a>
-          <a class="dropdown-item" href="?rank=Master{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Master</a>
-          <a class="dropdown-item" href="?rank=Predator{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Predator</a>
-        </div>
+      
+      <div class="col-md-3 mb-2">
+          <div class="btn-group w-100">
+              <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {% if rank_filter %}{{ rank_filter }}{% else %}All Ranks{% endif %}
+              </button>
+              <div class="dropdown-menu w-100">
+                  <a class="dropdown-item" href="?{% if country_filter %}country={{ country_filter }}&{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">All Ranks</a>
+                  <a class="dropdown-item" href="?rank=Bronze{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Bronze</a>
+                  <a class="dropdown-item" href="?rank=Silver{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Silver</a>
+                  <a class="dropdown-item" href="?rank=Gold{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Gold</a>
+                  <a class="dropdown-item" href="?rank=Platinum{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Platinum</a>
+                  <a class="dropdown-item" href="?rank=Diamond{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Diamond</a>
+                  <a class="dropdown-item" href="?rank=Master{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Master</a>
+                  <a class="dropdown-item" href="?rank=Predator{% if country_filter %}&country={{ country_filter }}{% endif %}{% if platform_filter %}&platform={{ platform_filter }}{% endif %}">Predator</a>
+              </div>
+          </div>
       </div>
-    </div>
-    
-    <div class="col-md-3 mb-2">
-      <div class="btn-group">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {% if platform_filter %}{{ platform_filter }}{% else %}All Platforms{% endif %}
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="?{% if country_filter %}country={{ country_filter }}&{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">All Platforms</a>
-          <a class="dropdown-item" href="?platform=PS4{% if country_filter %}&country={{ country_filter }}{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">PS4</a>
-          <a class="dropdown-item" href="?platform=XBOX{% if country_filter %}&country={{ country_filter }}{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">XBOX</a>
-          <a class="dropdown-item" href="?platform=PC{% if country_filter %}&country={{ country_filter }}{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">PC</a>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-md-3 mb-2">
-      <a href="{% url 'home' %}" class="btn btn-outline-primary btn-block">Reset Filters</a>
-    </div>
+      <div class="col-md-3 mb-2">
+          <div class="btn-group w-100">
+              <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {% if platform_filter %}{{ platform_filter }}{% else %}All Platforms{% endif %}
+              </button>
+              <div class="dropdown-menu w-100">
+                  <a class="dropdown-item" href="?{% if country_filter %}country={{ country_filter }}&{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">All Platforms</a>
+                  <a class="dropdown-item" href="?platform=PS4{% if country_filter %}&country={{ country_filter }}{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">PS4</a>
+                  <a class="dropdown-item" href="?platform=XBOX{% if country_filter %}&country={{ country_filter }}{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">XBOX</a>
+                  <a class="dropdown-item" href="?platform=PC{% if country_filter %}&country={{ country_filter }}{% endif %}{% if rank_filter %}&rank={{ rank_filter }}{% endif %}">PC</a>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-md-3 mb-2">
+          <a href="{% url 'home' %}" class="btn btn-outline-primary w-100">Reset Filters</a>
+      </div>
   </form>
 </div>
-
 
 <head>
   <!-- PLAYERS CARDS -->
   {% if user.profile.platform == 'XBOX' %}
     <link rel="icon" type="image/svg+xml" href="{% static 'xbox.svg' %}">
-  {% elif user.profile.platform == 'PS4/PS5' %}
+  {% elif user.profile.platform == 'PS4' %}
     <link rel="icon" type="image/svg+xml" href="{% static 'playstation.svg' %}">
   {% endif %}
 </head>
@@ -199,6 +198,8 @@
               <p class="card-text m-0"><i>Country</i> : {{ profile.country }}</p>
               {% if profile.apex_data %}
               <p class="card-text m-0"><i>Rank</i> : {{ profile.apex_data.rankName }} ({{ profile.apex_data.rankScore }})</p>
+              <hr class="my-2" style="border-top: 1px solid #ccc;">
+              <p class="card-text text-muted small m-0"><i>{{ profile.your_bio }}</i></p>
               {% endif %}
             </div>
             <div class="text-end">
@@ -253,12 +254,14 @@
   .badge-logo {
     width: 50px; /* Set width as needed */
     height: 50px; /* Set height as needed */
-    margin-bottom: 10px; /* Adjust margin as needed */
+    margin-top: 10px; /* Adjust margin as needed */
+    object-fit: contain; /* Ensure the image fits within the dimensions */
   }
   .badge-logo2 {
-    width: 70px; /* Set width as needed */
-    height: 70px; /* Set height as needed */
-    margin-bottom: 10px; /* Adjust margin as needed */
+    width: 65px; /* Set width as needed */
+    height: 65px; /* Set height as needed */
+    margin-top: 10px; /* Adjust margin as needed */
+    object-fit: contain; /* Ensure the image fits within the dimensions */
   }
   .card-title {
     display: flex;
@@ -290,9 +293,12 @@
   .text-end {
     text-align: end;
   }
+  .text-muted {
+  color: #cef5de !important;
+}
 </style>
 
-
-
-
 {% endblock %}
+
+
+
