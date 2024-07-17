@@ -30,6 +30,7 @@ class Profile(models.Model):
     gaming_id = models.CharField(max_length=100, null=True, blank=True)
     thumbnail = models.ImageField(upload_to='thumbnails/', default='default-thumbnail.jpg')
     last_active = models.DateTimeField(null=True, blank=True)
+    your_bio = models.CharField(max_length=255, blank=True)
 
     
 
