@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    .h2-police {
+      font-family: 'Raleway', sans-serif;
+    }
+    .badge-light {
+      margin-left: 5px;
+    }
+    .nav-item .nav-link {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand mb-0 h1 h2-police" href="{% url 'home' %}">RANK*UP</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'chat_list' %}">Chats
+              {% if unread_messages_count > 0 %}
+                  <span class="badge badge-light">{{ unread_messages_count }}</span>
+              {% endif %}
+          </a>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile_edit' %}">Profile</a>
+        </li>
+        <form class="d-flex" method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button class="btn btn-dark" type="submit">Logout</button>
+        </form>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h2 class="text-center">Edit Profile</h2>
+  <br></br>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form id="profileForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3 row">
+          <label for="gaming_id" class="col-sm-4 col-form-label"><strong>Gaming ID:</strong></label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control text-center" id="gaming_id" name="gaming_id" value="{{ form.gaming_id.value }}">
+            {{ form.gaming_id.errors }}
+          </div>
+        </div>
+        
+        <div class="mb-3 row">
+          <label for="country" class="col-sm-4 col-form-label"><strong>Country :</strong></label>
+          <div class="col-sm-8">
+            <div class="btn-group w-100">
+              <button class="btn btn-outline-dark dropdown-toggle w-100 text-start" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {% if form.country.value %}{{ form.country.value }}{% else %}Select Country{% endif %}
+              </button>
+              <div class="dropdown-menu w-100">
+                {% for choice in form.country.field.choices %}
+                  <a class="dropdown-item" href="#" onclick="document.getElementById('country').value='{{ choice.0 }}'; this.parentElement.parentElement.querySelector('.dropdown-toggle').textContent='{{ choice.1 }}'; return false;">{{ choice.1 }}</a>
+                {% endfor %}
+              </div>
+              <input type="hidden" id="country" name="country" value="{{ form.country.value }}">
+              {{ form.country.errors }}
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="platform" class="col-sm-4 col-form-label"><strong>Platform :</strong></label>
+          <div class="col-sm-8">
+            <div class="btn-group w-100">
+              <button class="btn btn-outline-dark dropdown-toggle w-100 text-start" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {% if form.platform.value %}{{ form.platform.value }}{% else %}Select Platform{% endif %}
+              </button>
+              <div class="dropdown-menu w-100">
+                {% for choice in form.platform.field.choices %}
+                  <a class="dropdown-item" href="#" onclick="document.getElementById('platform').value='{{ choice.0 }}'; this.parentElement.parentElement.querySelector('.dropdown-toggle').textContent='{{ choice.1 }}'; return false;">{{ choice.1 }}</a>
+                {% endfor %}
+              </div>
+              <input type="hidden" id="platform" name="platform" value="{{ form.platform.value }}">
+              {{ form.platform.errors }}
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="your_bio" class="col-sm-4 col-form-label"><strong>Your Bio :</strong></label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control text-center" id="your_bio" name="your_bio" value="{{ form.your_bio.value }}">
+            {{ form.your_bio.errors }}
+          </div>
+        </div>
+        <br></br>
+        <div class="mb-3 row">
+          <label for="thumbnail" class="col-sm-4 col-form-label"><strong>Profile Thumbnail :</strong></label>
+          <div class="col-sm-8">
+            <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*">
+            {{ form.thumbnail.errors }}
+            {% if form.thumbnail.value %}
+            <img src="{{ form.thumbnail.value.url }}" class="img-thumbnail mt-2 profile-thumbnail" alt="Profile Thumbnail" style="max-width: 200px;">
+            {% endif %}
+          </div>
+        </div>
+        <br></br>
+        <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+<style>
+  .form-floating .form-select {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .form-floating label {
+    padding: 1rem;
+  }
+  .form-floating .form-select:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+  }
+  .profile-thumbnail {
+    max-width: 150px;
+    height: auto;
+  }
+  .btn-group .dropdown-menu {
+    width: 100%;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var dropdowns = document.querySelectorAll('.btn-group .dropdown-menu .dropdown-item');
+    dropdowns.forEach(function(dropdown) {
+      dropdown.addEventListener('click', function(event) {
+        event.preventDefault();
+        var button = this.closest('.btn-group').querySelector('.dropdown-toggle');
+        button.textContent = this.textContent;
+        var hiddenInput = this.closest('.btn-group').querySelector('input[type="hidden"]');
+        hiddenInput.value = this.getAttribute('data-value');
+      });
+    });
+  });
+</script>
