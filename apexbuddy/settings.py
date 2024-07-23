@@ -138,7 +138,7 @@ AUTH_USER_MODEL = 'users.User'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-APEX_API_KEY = "f1882fff089967bafb68fd75f20dfba3"
+APEX_API_KEY = ""
 
 
 CACHES = {
