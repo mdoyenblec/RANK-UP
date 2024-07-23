@@ -3,7 +3,6 @@ from django.conf import settings
 from django.utils import timezone
 from datetime import datetime, timedelta
 
-# Create your models here.
 class Profile(models.Model):
 
     platform_choices = [
