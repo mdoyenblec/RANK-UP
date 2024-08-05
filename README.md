@@ -31,7 +31,9 @@ RANK*UP is the ultimate platform to find reliable teammates and climb the Apex L
 
 ![choose](https://github.com/mdoyenblec/RANK-UP/assets/89549493/55285a68-77be-4c1b-b3fa-d69b40ecea2f)
 
-![home](https://github.com/mdoyenblec/RANK-UP/assets/89549493/f3cd5a73-f093-4388-9c27-df230b69b65f)
+![Capture d’écran 2024-08-05 à 11 52 29](https://github.com/user-attachments/assets/d1537472-0c8a-4341-8cf2-31b1202d8caf)
+
+![Capture d’écran 2024-08-05 à 11 52 44](https://github.com/user-attachments/assets/ce241e12-abe3-45e3-b830-0d4e531fe286)
 
 ![chat](https://github.com/mdoyenblec/RANK-UP/assets/89549493/0c2fc321-cbcc-460b-87b4-9c4973fd5f05)
 
@@ -75,7 +77,9 @@ RANK*UP est une plateforme ultime pour trouver des coéquipiers fiables et grimp
 
 ![choose](https://github.com/mdoyenblec/RANK-UP/assets/89549493/55285a68-77be-4c1b-b3fa-d69b40ecea2f)
 
-![home](https://github.com/mdoyenblec/RANK-UP/assets/89549493/f3cd5a73-f093-4388-9c27-df230b69b65f)
+![Capture d’écran 2024-08-05 à 11 52 29](https://github.com/user-attachments/assets/d1537472-0c8a-4341-8cf2-31b1202d8caf)
+
+![Capture d’écran 2024-08-05 à 11 52 44](https://github.com/user-attachments/assets/ce241e12-abe3-45e3-b830-0d4e531fe286)
 
 ![chat](https://github.com/mdoyenblec/RANK-UP/assets/89549493/d43198d2-416b-4364-9113-424fca7c0d9d)
 
